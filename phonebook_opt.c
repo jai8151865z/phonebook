@@ -5,7 +5,7 @@
 
 #include "phonebook_opt.h"
 
-/* original version */
+/* small version */
 entry *findName(char lastname[], entry *pHead)
 {
     while (pHead != NULL) {
