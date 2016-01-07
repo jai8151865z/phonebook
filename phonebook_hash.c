@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <stdint.h>
 
 #include "phonebook_hash.h"
 
@@ -41,16 +42,18 @@ entry *append(char lastName[], entry *e)
     e = e->pNext;
     if(HashTable[tablenumber] != NULL)
     {
+          HashTable[tablenumber]->pNext = e;
+	  e->pNext = NULL;
           strcpy(e->lastName, lastName);
-          e->pNext = NULL;
           HashTable[tablenumber]->pNext = e;
      }
      else
      {
+	  e->pNext = NULL;
           strcpy(e->lastName, lastName);
-          e->pNext = NULL;
           HashTable[tablenumber] = e;
-      }
+      } 
+      free(e->pNext);
 
     return e;
 }
